@@ -33,6 +33,8 @@ string AskFullScreenQuestion(string question)
             wmove(stdscr, x_act, y_act);
             continue;
         }
+        if (s.size() > 20)
+            continue;
         s.push_back(c);
         mvwaddch(stdscr, x_act, y_act, c);
         y_act++;
