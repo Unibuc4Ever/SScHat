@@ -42,23 +42,33 @@ string AskFullScreenQuestion(string question)
     return s;
 }
 
-void UpdateTextbox(WINDOW* win, string& input, string& name)
+int UpdateTextbox(WINDOW* win, string& input, string& name)
 {
     if (input.back() == '\n') {
         input.pop_back();
+        if (input == ":q")
+            return -1;
         if (!input.empty()) {
             SendMessage(name + ": " + input);
             input.clear();
         }
     }
-    string message = input;
-    if (message.empty())
-        message = "Type a message...";
     
     int N, M;
     getmaxyx(win, N, M);
-
     assert(N == 3);
+
+    string message = input;
+    bool move_to_begin = 0;
+    if (message.empty()) {
+        move_to_begin = 1;
+        message = "Type a message...";
+        string s2 = ":q to quit";
+        while (message.size() + s2.size() + 6 < M)
+            message.push_back(' ');
+        message += s2;
+    }
+
     for (int i = 2; i < M - 2; i++) {
         mvwaddch(win, 1, i, ' ');
     }
@@ -68,7 +78,10 @@ void UpdateTextbox(WINDOW* win, string& input, string& name)
 
     for (int i = 0; i < (int)message.size(); i++)
         mvwaddch(win, 1, i + 2, message[i]);
+    if (move_to_begin)
+        wmove(win, 1, 2);
     wrefresh(win);
+    return 0;
 }
 
 void UpdateMessages(WINDOW* win, std::vector <std::string>& messages)

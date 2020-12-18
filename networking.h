@@ -4,7 +4,9 @@
 #include <string>
 #include <vector>
 
-void InitializeNetworking();
+void InitializeNetworking(std::string channel, bool recover_chat);
+
+void TeminateNetworking();
 
 void SendMessage(std::string message);
 

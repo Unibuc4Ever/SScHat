@@ -7,11 +7,15 @@ using namespace std;
 
 mutex user_input_busy;
 string user_input;
+bool waiting_to_close;
 
 void GetInput()
 {
-    while (1) {
+    timeout(100);
+    while (!waiting_to_close) {
         int x = getch();
+        if (x == ERR)
+            continue;
         user_input_busy.lock();
         if (x == KEY_BACKSPACE && user_input.size() > 0)
             user_input.pop_back();
@@ -29,10 +33,11 @@ int main()
     keypad(stdscr, TRUE);
     refresh();
 
-    InitializeNetworking();
-
     string name = AskFullScreenQuestion("What is your name?");
     string channel = AskFullScreenQuestion("In which channel do you want to talk?");
+    string recover_chat = AskFullScreenQuestion("Should we get previous messages (Y/N)?");
+
+    InitializeNetworking(channel, (recover_chat[0] == 'Y' || recover_chat[0] == 'y'));
 
     int N, M;
     getmaxyx(stdscr, N, M);
@@ -50,11 +55,23 @@ int main()
         this_thread::sleep_for(chrono::milliseconds(10));
         
         user_input_busy.lock();
-        UpdateTextbox(editor_win, user_input, name);
+        int output = UpdateTextbox(editor_win, user_input, name);
         user_input_busy.unlock();
 
         vector <string> messages = GetLastMessages();
         UpdateMessages(messages_win, messages);
+    
+        if (output == -1) {
+            // quit
+            break;
+        }
     }
+
+    TeminateNetworking();
+    endwin();
+
+    waiting_to_close = 1;
+    user_input_thread.join();
+
     return 0;
 }

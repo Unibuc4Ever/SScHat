@@ -7,7 +7,7 @@
 
 std::string AskFullScreenQuestion(std::string question);
 
-void UpdateTextbox(WINDOW* win, std::string& input, std::string& name);
+int UpdateTextbox(WINDOW* win, std::string& input, std::string& name);
 
 void UpdateMessages(WINDOW* win, std::vector <std::string>& messages);
 
