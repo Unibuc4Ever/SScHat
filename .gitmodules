@@ -1,0 +1,3 @@
+[submodule "Telemetry"]
+	path = Telemetry
+	url = https://github.com/Unibuc4Ever/Telemetry
