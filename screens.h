@@ -7,8 +7,8 @@
 
 std::string AskFullScreenQuestion(std::string question);
 
-int UpdateTextbox(WINDOW* win, std::string& input, std::string& name);
+int UpdateTextbox(WINDOW* win, std::string& input, std::string& name, bool force_refresh);
 
-void UpdateMessages(WINDOW* win, std::vector <std::string>& messages);
+void UpdateMessages(WINDOW* win, std::vector <std::string>& messages, bool force_refresh);
 
 #endif // SCREENS_

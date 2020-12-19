@@ -44,7 +44,7 @@ string AskFullScreenQuestion(string question)
     return s;
 }
 
-int UpdateTextbox(WINDOW* win, string& input, string& name)
+int UpdateTextbox(WINDOW* win, string& input, string& name, bool force_refresh)
 {
     if (input.back() == '\n') {
         input.pop_back();
@@ -86,10 +86,10 @@ int UpdateTextbox(WINDOW* win, string& input, string& name)
     return 0;
 }
 
-void UpdateMessages(WINDOW* win, std::vector <std::string>& messages)
+void UpdateMessages(WINDOW* win, std::vector <std::string>& messages, bool force_refresh)
 {
     static vector <string> last_messages;
-    if (messages == last_messages)
+    if (messages == last_messages && !force_refresh)
         return;
     last_messages = messages;
     wclear(win);
