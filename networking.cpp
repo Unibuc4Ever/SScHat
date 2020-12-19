@@ -15,6 +15,13 @@ namespace {
         string str_message(message);
         vec_messages_is_busy.lock();
         vec_messages.push_back(str_message);
+        // if more than 200 elements, then take last 100
+        if (vec_messages.size() > 200) {
+            reverse(vec_messages.begin(), vec_messages.end());
+            while (vec_messages.size() > 100)
+                vec_messages.pop_back();
+            reverse(vec_messages.begin(), vec_messages.end());
+        }
         vec_messages_is_busy.unlock();
     }
 }

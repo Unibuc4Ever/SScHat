@@ -46,7 +46,7 @@ string AskFullScreenQuestion(string question)
 
 int UpdateTextbox(WINDOW* win, string& input, string& name, bool force_refresh)
 {
-    if (input.back() == '\n') {
+    if (!input.empty() && input.back() == '\n') {
         input.pop_back();
         if (input == ":q")
             return -1;
@@ -68,7 +68,9 @@ int UpdateTextbox(WINDOW* win, string& input, string& name, bool force_refresh)
         string s2 = ":q to quit";
         while (message.size() + s2.size() + 6 < M)
             message.push_back(' ');
-        message += s2;
+        
+        if (message.size() + s2.size() + 6 <= M)
+            message += s2;
     }
 
     for (int i = 2; i < M - 2; i++) {
