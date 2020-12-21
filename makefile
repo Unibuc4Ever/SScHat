@@ -5,8 +5,13 @@ SANITIZER:=-fsanitize=address,undefined,signed-integer-overflow
 WARNINGS:=-Wall -Wextra
 FILES:=$(wildcard ./*.cpp)
 COMP_FLAGS:=$(FLAGS) $(SANITIZER)
+
 all: lib
 	$(CC) $(COMP_FLAGS) -o chat.out $(FILES) Telemetry/libtelemetry.a $(SHARED_LIB)
 
 lib:
 	cd Telemetry && $(MAKE) client
+
+clean:
+	rm *.out
+	cd Telemetry && $(MAKE) clean
