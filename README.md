@@ -3,75 +3,32 @@
 This app uses the Telemetry client (imported as a submodule).
 It's main utility is to be able to chat with multiple users all connected to the same SSH machine on the same user.
 
-## Indented usage
+## Indented Usage
 
-### Wecome screen
-```
-*************************************************************
-*                                                           *
-*                                                           *
-*                                                           *
-*                                                           *
-*           Please enter your display name:                 *
-*                                                           *
-*                      Theod..                              *
-*                                                           *
-*                                                           *
-*                                                           *
-*                                                           *
-*                                                           *
-*************************************************************
-```
+### Wecome Screen - Name Prompt
 
-### Wecome screen
-```
-*************************************************************
-*                                                           *
-*                                                           *
-*                                                           *
-*                                                           *
-*           Welcome Theodor! What channel do you want       *
-*                        to join?                           *
-*                                                           *
-*                    /tmp/idk..                             *
-*                                                           *
-*                                                           *
-*                                                           *
-*                                                           *
-*************************************************************
-```
+<img src="wiki/image1.png" />
 
-### Chat screen
-```
-*************************************************************
-*  Alex:  Laurem sdgdfg   fdsfsdfdsfsd fsd dfds fds sdffsdf *
-*         sdfsdfsdgfd                                       *
-*  Matei: sdfdsfdsfsd fdsf                                  *
-*  Alex: sdfsdfds fsd sdfsd                                 *
-*  George: sdfdsfdsfsd fsdfsd fdsdfsdfsdf                   *
-*                                                           *
-*                                                           *
-*                                                           *
-*  _______________________________________________________  *
-* |                                                       | *
-* | Type your message here ...                            | *
-* |_______________________________________________________| *
-*************************************************************
-```
+### Wecome Screen - Channel Prompt
 
-## Ideeas
-1. Use messages like the ones created by cowsay
- _________________________________________
-/ asdsa dfdsf sdf sdfds fds sd            \
-| sdfsdfksdfsdfdskfjdslfdsjkdslfjsdlfsdjf |
-\ lskdfjsdlfdskjfklsd                     /
- -----------------------------------------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
-                ||----w |
-                ||     ||
+<img src="wiki/image2.png" />
+
+### Wecome Screen - Message Recovery Prompt
+
+<img src="wiki/image3.png" />
+
+### Chat Screen - No Written Message
+
+<img src="wiki/image4.png" />
+
+### Chat Screen - Written Message
+
+<img src="wiki/image5.png" />
 
 
-To know:
- * For compiling, we should use https://stackoverflow.com/questions/5430688/compiling-c-and-c-files-together-using-gcc.
+## How To Use
+
+ * First Clone the repo.
+ * Make sure to initialize the `Telemetry` submodule.
+ * Compile the code with `$ make`.
+ * Run SSChat with `$ ./chat.out`.
